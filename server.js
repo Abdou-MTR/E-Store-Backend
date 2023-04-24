@@ -29,7 +29,7 @@ app.use(morgan("dev"));
 
 app.listen(process.env.API_PORT);
 console.log(`server run on ${process.env.API_PORT}`);
-app.use("/uploads", express.static("public/uploads"));
+app.use("/uploads", express.static("app/src/uploads"));
 const Product = require("./modules/product");
 //upload
 const upload = multer({
