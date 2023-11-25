@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema({
       },
     },
   ],
-
+  
   verified: { type: Boolean, default: false },
 });
 userSchema.methods.generateAuthToken = function () {
@@ -60,6 +60,7 @@ const validate = (data) => {
     password: passwordComplexity().required().label("Password"),
     passwordConf: passwordComplexity().required().label("Password"),
   });
+  return schema.validate(data);
 };
 
 module.exports = { User, validate };
