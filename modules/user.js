@@ -19,8 +19,37 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-});
+  bag: [
+    {
+      productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        default: 1,
+      },
+    },
+  ],
+  wishlist: [
+    {
+      productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+        required: true,
+      },
+    },
+  ],
 
+  verified: { type: Boolean, default: false },
+});
+userSchema.methods.generateAuthToken = function () {
+  const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
+    expiresIn: "7d",
+  });
+  return token;
+};
 const User = mongoose.model("User", userSchema);
 
 const validate = (data) => {
