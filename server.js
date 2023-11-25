@@ -52,12 +52,7 @@ const upload = multer({
 app.post("/upload/products", upload.single("image"), async (req, res) => {
   try {
     // Resize and compress the uploaded image using Sharp
-    const buffer = await sharp(req.file.path)
-      .resize(800, 800, { fit: "inside", withoutEnlargement: true })
-      .jpeg({ quality: 80, progressive: true })
-      .toBuffer();
-    // Save the optimized image to disk
-    fs.writeFileSync(req.file.path, buffer);
+
     // Create new product object from request body and uploaded image filename
     const newProduct = new Product({
       name: req.body.name,
