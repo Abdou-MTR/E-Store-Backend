@@ -54,7 +54,7 @@ app.post("/upload/products", upload.single("image"), async (req, res) => {
     // Resize and compress the uploaded image using Sharp
 
     // Create new product object from request body and uploaded image filename
-    const newProduct = new Product({
+    const newProduct = new Product(
       name: req.body.name,
       miniDescription: req.body.miniDescription,
       category: req.body.category,
