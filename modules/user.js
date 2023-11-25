@@ -61,6 +61,7 @@ const validate = (data) => {
     passwordConf: passwordComplexity().required().label("Password"),
   });
   return schema.validate(data);
+  a;
 };
 
 module.exports = { User, validate };
