@@ -9,7 +9,7 @@ const cors = require("cors");
 const connection = require("./mongo");
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
-
+const favoritesRoutes = require("./routes/favorites");
 // DB Connection
 connection();
 
@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/favorites", favoritesRoutes);
 
 // morgan for logging and bodyparser for parsing the body of the request
 const morgan = require("morgan");
